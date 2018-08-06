@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Chat: SocketIO y Python 3</title>
+  </head>
+  <body>
+    <h1>Chat: SocketIO y Python 3</h1>
+    <ul id="messages"></ul>
+    <input type="text" id="myMessage">
+    <button type="button" id="send">Send</button>
+
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+    <script type="text/javascript">
+      const socket = io();
+
+      socket.on('message', function(msg){
+        $('#messages').append('<li>'+ msg+'</li>')
+      })
+
+      $('#send').on('click', function(){
+        socket.send($('#myMessage').val())
+        $('#myMessage').val('')
+
+      })
+
+    </script>
+
+
+
+  </body>
+</html>
